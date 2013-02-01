@@ -1,0 +1,163 @@
+body {
+    background-color: #05014E;
+    color: orange;
+}
+div#contenedor {
+    width: 800px;
+    margin: 20px auto;
+}
+div#head {
+    font-family: arial;
+    font-size: 60px;
+    font-weight: bold;
+    color: red;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+div#headd {
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0180BF;
+    letter-spacing: 3px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: red;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+div#menu {
+    font-family: verdana;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    display: inline-block;
+    padding: 0px;
+    color: gray;
+    
+}
+.menuu {
+       display: inline-block;
+       padding-top: inherit;
+       color: gray;
+}
+
+.menuu ul li {       
+     visibility: hidden;
+}
+.menuu ul {
+     display: inline-block; 
+     padding: inherit;
+     color: gray;
+     height: 0px;
+}
+.menuu ul:hover li {       
+     visibility: visible;
+     color: gray;
+}
+
+
+a:link {
+    text-decoration: none;
+    color: gray;
+}
+a:visited {
+    text-decoration: none;
+    color: #494949;
+}
+a:hover {
+    text-decoration: underline;
+    color: #F49B15;
+}
+div#contenido {
+    font-family: verdana;
+    border-top: 25px;
+    font-size: 12px;
+    text-align: justify;
+}
+fieldset#presenta {
+    width: 700px;
+    margin: 0px auto;
+    letter-spacing: 2px;
+    line-height: 15px;
+    padding: 20px;
+    margin-top: 50px;
+}
+div#bien {
+    font-size: 40px;
+    padding: 15px;
+    margin-top: 0px;
+    max-height: 0px;    
+}
+legend#titPresenta {
+    letter-spacing: 2px;
+    color: white;
+    padding: 5px;
+}
+fieldset#form {
+    width: 250px;
+    padding: 10px;
+    
+}
+legend#titform {
+    letter-spacing: 2px;
+    color: orange;
+}
+table#form td {
+    text-align: right;
+    margin-top: 10px;
+}
+table#view {
+    margin-top: 20px;
+}
+table#view th {
+    background-color:#252A2E;
+}
+table#view td{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #6E6E6E;
+    padding: 3px;
+}
+tr.filaPAR {
+    background-color: #6E6E6E;
+}
+tr.filaIMP {
+    background-color: #4F4F4F;
+}
+select {
+     width:145px;
+}
+span#alerta {
+    font-weight: bold;
+}
+.deshabilitado {
+    background-color: #5A5656;
+    color: red;
+}
+fieldset#login {
+    width: 250px;
+    padding: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+legend#titLogin {
+    letter-spacing: 2px;
+    color: orange;
+}
+div#login {
+    font-size: 24px;
+    float: left;
+    margin-left: 20px;
+    text-align: left;
+    font-weight: bold;    
+}
+input.login {
+    width: 100px;
+}
+
+
