@@ -1,0 +1,139 @@
+
+body {
+	font-family: sans-serif;
+}
+
+#page {
+	min-height: 600px;
+	width: 900px;
+	background-color: #d8dfea;
+	margin: 0 auto;
+	border: 3px grey solid;
+}
+
+#header {
+	width: 100%;
+	height: 200px;
+}
+
+#login {
+	width: 100%;
+	font-size: xx-small;
+	height: 30px;
+	background-color: black;
+	color: white;
+}
+
+#login > div {
+	float: right;
+}
+
+#login > div > form > span {
+	font-size: medium;
+	padding-right: 10px;
+}
+
+#logo {
+	width: 100%;
+	height: 100px;
+	padding-top: 10px;
+}
+
+#logo > div {
+	margin: 0 auto;
+}
+
+#logo > div > img {
+	height: 100px;
+}
+
+#menu {
+	width: 100%;
+	font-weight: bold;
+	height: 50px;
+	padding-top: 20px;
+}
+
+#menu > div {
+	width: 100%;
+	height: inherit;
+	margin: 0 auto;
+}
+
+#menu ul {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#menu ul li {
+    display: block;
+    position: relative;
+    float: left;
+    width: inherit;
+}
+
+#menu li ul {
+    display: none;
+}
+
+#menu ul li a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    border-top: 1px solid #ffffff;
+    padding: 5px 15px 5px 15px;
+    background: #1e7c9a;
+    margin-left: 1px;
+    white-space: nowrap;
+}
+
+#menu ul li a:hover {
+	background: #3b3b3b;
+}
+
+#menu li:hover ul {
+    display: block;
+    position: absolute;
+}
+
+#menu li:hover li {
+    float: none;
+    font-size: 11px;
+}
+
+#menu li:hover a {
+	background: #3b3b3b;
+}
+
+#menu li:hover li a:hover {
+    background: #1e7c9a;
+}
+
+#content {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#content td {
+	
+}
+
+#resumenEmpresa {
+	margin: 0 auto;
+	background-color: grey;
+	border: 1px black solid;
+	width: 70%;
+}
+
+#footer {
+	margin-bottom: 0px;
+	background-color: grey;
+}
+
+#autor {
+	margin: 0 auto;
+}
+
+
