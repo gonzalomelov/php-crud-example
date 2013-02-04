@@ -18,20 +18,16 @@
 			<div id="content">
 				<table>
 					<tr>
-						<th>Titulo</th>
-						<th>Idioma</th>
-						<th>Subtitulos</th>
+						<th>Genero</th>
 					</tr>
 				
 				<?php 
 					require_once ABSPATH.'/consultas.php';
 					
-					$titulos = listarTitulos();
-					while ($titulo = mysql_fetch_assoc($titulos)) {
+					$generos = listarGeneros();
+					while ($genero = mysql_fetch_assoc($generos)) {
 						echo "<tr>";
-						echo "<td>".$titulo['titulo']."</td>";
-						echo "<td>".$titulo['idioma']."</td>";
-						echo "<td>".$titulo['subtitulos']."</td>";
+						echo "<td>".$genero['genero']."</td>";
 						echo "</tr>";
 					}
 					

@@ -2,7 +2,6 @@
 
 require_once 'dbconnection.inc.php';
 
-
 function validarUsuario($usuario, $password){
 	
 	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
@@ -29,6 +28,9 @@ function insertarTitulo($titulo, $idioma, $subtitulos, $genero_id){
 	mysql_select_db($mysql_database);
 	$query = "insert into titulos (titulo, idioma, subtitulos, genero_id)".
 			" values ('$titulo', '$idioma', '$subtitulos', $genero_id)";
+	
+	error_log("query: ".$query);
+	
 	$result = mysql_query($query);
 
 	return $result;
@@ -88,6 +90,24 @@ function listarGeneros(){
 	}
 	
 	return $result;
+}
+
+function obtenerIdGenero($genero){
+	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
+	
+	mysql_connect($mysql_host, $mysql_user, $mysql_password);
+	mysql_select_db($mysql_database);
+	$query = "select * from generos where genero='$genero';";
+	$result = mysql_query($query);
+	
+	if (!$result){
+		error_log("error");
+		return false;
+	}
+	
+	$fila = mysql_fetch_assoc($result);
+	
+	return $fila['id'];
 }
 
 ?>
