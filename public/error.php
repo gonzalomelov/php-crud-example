@@ -1,10 +1,10 @@
-<?php
+<?php 
 	require_once 'config.inc.php';
 ?>
 <!doctype>
 <html>
 	<head>
-		<title>e.Disks</title>
+		<title>e.Disks - Error</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo URLADDR; ?>/style.css" />
 	</head>
 	<body>
@@ -15,11 +15,9 @@
 				?>
 			</div>
 			<div id="content">
-				<div id="resumenEmpresa">
-					Es una empresa que importa t?tulos de documentales sobre g?neros pocos convencionales y 
-		            muy espec?ficos, como ciencia, tecnolog?a, salud, b?licos, historia, naturaleza, biolog?a, etc. 
-		            Sus productos son solicitados en CD's, DVD's y Blu-ray
-	            </div>
+				<h1>Error!!</h1>
+				<h2><?php echo $_GET['titulo']; ?></h2>
+				<?php echo $_GET['mensaje']; ?>
 			</div>
 			<div id="footer">
 				<?php
@@ -29,4 +27,3 @@
 		</div>
 	</body>
 </html>
-

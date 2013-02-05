@@ -1,18 +1,22 @@
 <?php
 
-require_once 'dbconnection.inc.php';
+require_once 'config.inc.php';
 
-function validarUsuario($usuario, $password){
-	
+//Configuracion DB
+function definirDB(){
 	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
-	
 	mysql_connect($mysql_host, $mysql_user, $mysql_password);
 	mysql_select_db($mysql_database);
+}
+
+//Usuarios
+function validarUsuario($usuario, $password){
+	definirDB();
+	
 	$query = "select * from usuarios u where u.usuario='$usuario' and u.password='$password';";
 	$result = mysql_query($query);
 	
 	if (!$result){
-		error_log("error");
 		return false;
 	}
 	
@@ -21,32 +25,38 @@ function validarUsuario($usuario, $password){
 	return $numResults == 1; 	
 }
 
+//Titulos
 function insertarTitulo($titulo, $idioma, $subtitulos, $genero_id){
-	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
-
-	mysql_connect($mysql_host, $mysql_user, $mysql_password);
-	mysql_select_db($mysql_database);
+	definirDB();
+	
 	$query = "insert into titulos (titulo, idioma, subtitulos, genero_id)".
 			" values ('$titulo', '$idioma', '$subtitulos', $genero_id)";
-	
-	error_log("query: ".$query);
-	
 	$result = mysql_query($query);
 
 	return $result;
 }
 
+function obtenerTitulo($idTitulo){
+	definirDB();
+	
+	$query = "select * from titulos where id=$idTitulo;";
+	$result = mysql_query($query);
+
+	if (!$result){
+		return false;
+	}
+
+	return mysql_fetch_assoc($result);
+}
+
 function listarTitulos(){
+	definirDB();
 	
-	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
-	
-	mysql_connect($mysql_host, $mysql_user, $mysql_password);
-	mysql_select_db($mysql_database);
-	$query = "select * from titulos t join generos g on t.genero_id = g.id;";
+	$query = "select t.id, titulo, idioma, subtitulos, genero_id, genero ".
+		"from titulos t join generos g on t.genero_id = g.id;";
 	$result = mysql_query($query);
 	
 	if (!$result){
-		error_log("error");
 		return false;
 	}
 	
@@ -54,60 +64,81 @@ function listarTitulos(){
 }
 
 function eliminarTitulo($id){
-	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
-
-	mysql_connect($mysql_host, $mysql_user, $mysql_password);
-	mysql_select_db($mysql_database);
+	definirDB();
+	
 	$query = "delete from titulos where id = $id;";
 	$result = mysql_query($query);
 
 	return $result;
 }
 
-function insertarGenero($genero){
-	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
+function actualizarTitulo($id, $titulo, $idioma, $subtitulos, $genero_id){
+	definirDB();
+	
+	$query = "update titulos set titulo='$titulo', idioma='$idioma', subtitulos='$subtitulos', genero_id=$genero_id where id=$id;";
+	$result = mysql_query($query);
 
-	mysql_connect($mysql_host, $mysql_user, $mysql_password);
-	mysql_select_db($mysql_database);
+	return $result;
+}
+
+//Generos
+function insertarGenero($genero){
+	definirDB();
+	
 	$query = "insert into generos (genero) values ('$genero')";
 	$result = mysql_query($query);
 
 	return $result;
 }
 
+function obtenerIdGenero($genero){
+	definirDB();
+	
+	$query = "select * from generos where genero='$genero';";
+	$result = mysql_query($query);
+
+	if (!$result){
+		return false;
+	}
+
+	$fila = mysql_fetch_assoc($result);
+
+	return $fila['id'];
+}
+
+function obtenerGenero($id){
+	definirDB();
+
+	$query = "select * from generos where id='$id';";
+	$result = mysql_query($query);
+
+	if (!$result){
+		return false;
+	}
+
+	return mysql_fetch_assoc($result);
+}
+
 function listarGeneros(){
+	definirDB();
 	
-	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
-	
-	mysql_connect($mysql_host, $mysql_user, $mysql_password);
-	mysql_select_db($mysql_database);
 	$query = "select * from generos;";
 	$result = mysql_query($query);
 	
 	if (!$result){
-		error_log("error");
 		return false;
 	}
 	
 	return $result;
 }
 
-function obtenerIdGenero($genero){
-	global $mysql_host, $mysql_database, $mysql_user, $mysql_password;
+function actualizarGenero($id, $genero){
+	definirDB();
 	
-	mysql_connect($mysql_host, $mysql_user, $mysql_password);
-	mysql_select_db($mysql_database);
-	$query = "select * from generos where genero='$genero';";
+	$query = "update generos set genero='$genero' where id=$id;";
 	$result = mysql_query($query);
-	
-	if (!$result){
-		error_log("error");
-		return false;
-	}
-	
-	$fila = mysql_fetch_assoc($result);
-	
-	return $fila['id'];
+
+	return $result;
 }
 
 ?>

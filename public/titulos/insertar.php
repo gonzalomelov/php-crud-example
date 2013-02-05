@@ -1,10 +1,15 @@
 <?php 
 	require_once '../config.inc.php';
+	require_once ABSPATH.'/consultas.php';
 
-	session_start();	
+	//Si no esta logueado retorno pagina de error
+	session_start();
+	
+	if (!isset($_SESSION["usuario"])){
+		header("Location: ".URLADDR."/error.php?titulo=No se encuentra logueado&mensaje=Ingrese al sitio para insertar un titulo");
+	}	
 
 	if($_SERVER['REQUEST_METHOD'] == "POST"){
-		require_once ABSPATH.'consultas.php';
 
 		$titulo = $_POST["titulo"];
 		$idioma = $_POST["idioma"];
@@ -14,9 +19,9 @@
 		$genero_id = obtenerIdGenero($genero);
 		
 		if (insertarTitulo($titulo, $idioma, $subtitulos, $genero_id)) {
-			header("Location: ".URLADDR."titulos/listar.php");
+			header("Location: ".URLADDR."/titulos/listar.php");
 		} else {
-			header("Location: ".URLADDR."titulos/insertar.php");
+			header("Location: ".URLADDR."/error.php");
 		}
 
 	} else if ($_SERVER['REQUEST_METHOD'] == "GET") {
@@ -25,18 +30,18 @@
 <!doctype>
 <html>
 	<head>
-		<title>e.Disks</title>
-		<link rel="stylesheet" type="text/css" href="<?php echo URLADDR; ?>style.css" />
+		<title>e.Disks - Insertar Titulo</title>
+		<link rel="stylesheet" type="text/css" href="<?php echo URLADDR; ?>/style.css" />
 	</head>
 	<body>
 		<div id="page">
 			<div id="header">
 				<?php
-					require_once ABSPATH.'header.php';
+					require_once ABSPATH.'/header.php';
 				?>
 			</div>
 			<div id="content">
-				<form name="tituloInsertar" action="<?php echo URLADDR; ?>titulos/insertar.php" method="post">
+				<form name="tituloInsertar" action="<?php echo URLADDR; ?>/titulos/insertar.php" method="post">
 					<div>
 						<div>
 							Titulo: 
@@ -54,8 +59,6 @@
 						Genero:
 						<select name="genero">
 						<?php
-						require_once ABSPATH.'consultas.php';
-						
 						$generos = listarGeneros();
 						while($genero = mysql_fetch_assoc($generos)){
 							echo "<option>".$genero['genero']."</option>";
@@ -70,7 +73,7 @@
 			</div>
 			<div id="footer">
 				<?php
-					require_once ABSPATH.'footer.php';
+					require_once ABSPATH.'/footer.php';
 				?>
 			</div>
 		</div>

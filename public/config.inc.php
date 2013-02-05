@@ -1,19 +1,21 @@
 <?php
-	define('ABSPATH', str_replace('\\', '/', dirname(__FILE__)) . '/');
 
-	$tempPath1 = explode('/', str_replace('\\', '/', dirname($_SERVER['SCRIPT_FILENAME'])));
-	$tempPath2 = explode('/', substr(ABSPATH, 0, -1));
-	$tempPath3 = explode('/', str_replace('\\', '/', dirname($_SERVER['PHP_SELF'])));
+define('ABSPATH', str_replace('\\', '/', dirname(__FILE__)));
+define('URLADDR', 'http://192.168.1.10/~gonza/php-crud-example/public');
+
+//local
+$mysql_host = "localhost";
+$mysql_database = "phpcrudexampleDB";
+$mysql_user = "root";
+$mysql_password = "root";
+//$mysql_password = "";
+
+//000webhost
+// $mysql_host = "mysql1.000webhost.com";
+// $mysql_database = "a2350246_example";
+// $mysql_user = "a2350246_mysql";
+// $mysql_password = "U8060T";
+
+//echo ABSPATH."<br>".URLADDR;
 	
-	for ($i = count($tempPath2); $i < count($tempPath1); $i++)
-	    array_pop ($tempPath3);
-	
-	$urladdr = $_SERVER['HTTP_HOST'] . implode('/', $tempPath3);
-	
-	if ($urladdr{strlen($urladdr) - 1}== '/')
-	    define('URLADDR', 'http://' . $urladdr);
-	else
-	    define('URLADDR', 'http://' . $urladdr . '/');
-	
-	unset($tempPath1, $tempPath2, $tempPath3, $urladdr);
 ?>

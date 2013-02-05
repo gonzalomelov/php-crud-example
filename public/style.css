@@ -116,6 +116,12 @@ body {
 	padding-bottom: 20px;
 }
 
+#content input[readonly="readonly"] {
+	/* Igual al disabled="disabled" */
+	background-color: rgb(235, 235, 228);
+	color: rgb(84, 84, 84);
+}
+
 #content td {
 	
 }
