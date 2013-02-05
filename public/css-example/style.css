@@ -1,5 +1,5 @@
 #wraper {
-	background-image: url('images/background-small.jpg');
+	background-image: url('background-small.jpg');
 	background-color: grey;
 	background-repeat: repeat;
 }
@@ -119,7 +119,9 @@
 	text-align: center;
 }
 
+
 /* FOOTER */
+
 
 #footer {
 	height: 40px;

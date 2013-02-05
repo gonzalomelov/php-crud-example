@@ -7,14 +7,16 @@
 ?>
 <div id="login">
 	<div>
-		<form name="login" action="<?php echo URLADDR; ?>/login.php" method="post">
-			Usuario: 
-			<input name="usuarioLogin" type="text" />
-			Password:
-			<input name="passwordLogin" type="password" />
-			
-			<input type="submit" value="Login" />
-		</form>
+		<div>
+			<form name="login" action="<?php echo URLADDR; ?>/login.php" method="post">
+				Usuario: 
+				<input name="usuarioLogin" type="text" />
+				Password:
+				<input name="passwordLogin" type="password" />
+				
+				<input type="submit" value="Login" />
+			</form>
+		</div>
 	</div>
 </div>
 <?php 
