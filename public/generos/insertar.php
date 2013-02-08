@@ -27,28 +27,44 @@
 	<head>
 		<title>e.Disks - Insertar Genero</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo URLADDR; ?>/style.css" />
+		<script type="text/javascript" src="<?php echo URLADDR; ?>/validaciones.js"></script>
 	</head>
 	<body>
-		<div id="page">
-			<div id="header">
-				<?php
-					require_once ABSPATH.'/header.php';
-				?>
-			</div>
-			<div id="content">
-				<form name="generoInsertar" action="<?php echo URLADDR; ?>/generos/insertar.php" method="post">
-					<div>
-						<div>
-							Genero: 
-							<input name="genero" type="text" />
-						</div>
-						<input type="submit" value="Insertar Genero" />
+		<div id="wraper">
+			<?php
+				require_once ABSPATH.'/login.inc.php';
+			?>
+			<div id="page">
+				<div id="header">
+					<?php
+						require_once ABSPATH.'/header.inc.php';
+					?>
+				</div>
+				<div id="content">
+					<div id="form">
+						<fieldset>
+							<legend>Insertar Genero</legend>
+							<form id="generoInsertar" name="generoInsertar" action="<?php echo URLADDR; ?>/generos/insertar.php" method="post">
+								<table>
+									<tr>
+										<td>Genero:</td>
+										<td></td>
+										<td><input id="genero" name="genero" type="text" /></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="button" value="Insertar Genero" onclick="validarFormGeneroInsertar()" /></td>
+										<td></td>
+									</tr>
+								</table>
+							</form>
+						</fieldset>
 					</div>
-				</form>
+				</div>
 			</div>
 			<div id="footer">
 				<?php
-					require_once ABSPATH.'/footer.php';
+					require_once ABSPATH.'/footer.inc.php';
 				?>
 			</div>
 		</div>

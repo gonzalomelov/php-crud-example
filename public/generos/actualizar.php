@@ -43,56 +43,79 @@
 	<head>
 		<title>e.Disks - Actualizar Genero</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo URLADDR; ?>/style.css" />
+		<script type="text/javascript" src="<?php echo URLADDR; ?>/validaciones.js"></script>
 	</head>
 	<body>
-		<div id="page">
-			<div id="header">
-				<?php
-					require_once ABSPATH.'/header.php';
-				?>
-			</div>
-			<div id="content">
-				<form action="<?php echo URLADDR; ?>/generos/actualizar.php" method="post">
-					<div>
-						<div>
-							Id: 
-							<?php 
-							if (!$modificarGenero) {
-								echo '<input name="id" type="text" />';
-							} else {
-								echo '<input name="id" type="text" value="'.$genero['id'].'" readonly="readonly" />';
-							}
-							?>	
-						</div>
-						<div>
-							Genero:
-							<?php 
-							if (!$modificarGenero) {
-								echo '<input name="genero" type="text" value="Deshabilitado" disabled="disabled" />';
-							} else {
-								echo '<input name="genero" type="text" value="'.$genero['genero'].'"/>';
-							}
-							?>
-						</div>
-						<div>
-							<?php 
-							if (!$modificarGenero){
-								$submit = "Seleccionar Genero";
-							} else {
-								$submit = "Actualizar Genero";
-							}
-							echo '<input type="submit" value="'.$submit.'" />'; 
-							?>
-						</div>
+		<div id="wraper">
+			<?php
+				require_once ABSPATH.'/login.inc.php';
+			?>
+			<div id="page">
+				<div id="header">
+					<?php
+						require_once ABSPATH.'/header.inc.php';
+					?>
+				</div>
+				<div id="content">
+					<div id="form">
+						<fieldset>
+							<legend>Actualizar Genero</legend>
+							<form id="generoActualizar" action="<?php echo URLADDR; ?>/generos/actualizar.php" method="post">
+								<table>
+									<tr>
+										<td>Id:</td>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarGenero) {
+											echo '<input id="id" name="id" type="text" />';
+										} else {
+											echo '<input id="id" name="id" type="text" value="'.$genero['id'].'" readonly="readonly" />';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td>Genero:</td>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarGenero) {
+											echo '<input id="genero" name="genero" type="text" value="Deshabilitado" disabled="disabled" />';
+										} else {
+											echo '<input id="genero" name="genero" type="text" value="'.$genero['genero'].'"/>';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarGenero){
+											$submit = "Seleccionar Genero";
+											echo '<input type="button" value="'.$submit.'" onclick="validarFormGeneroActualizarSeleccionar()" />';
+										} else {
+											$submit = "Actualizar Genero";
+											echo '<input type="button" value="'.$submit.'" onclick="validarFormGeneroActualizarSubmit()" />';
+										}
+										 
+										?>
+										</td>
+										<td></td>
+									</tr>
+								</table>
+							</form>
+						</fieldset>
 					</div>
-				</form>
+				</div>
 			</div>
 			<div id="footer">
 				<?php
-					require_once ABSPATH.'/footer.php';
+					require_once ABSPATH.'/footer.inc.php';
 				?>
 			</div>
-		</div>
+		</div>		
 	</body>
 </html>
 <?php

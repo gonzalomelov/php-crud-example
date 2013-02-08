@@ -1,23 +1,13 @@
-#wraper {
-	background-image: url('images/background-small.jpg');
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background-image: url('imagenes/background-small.jpg');
 	background-color: grey;
 	background-repeat: repeat;
 }
 
-#page {
-	width: 900px;
-	margin: 0 auto;
-	background-color: white;
-	border-top: 1px #eeeeee solid;
-	border-left: 20px #eeeeee solid;
-	border-right: 20px #eeeeee solid;
-}
-
-/* HEADER */
-
-#header {
-	
-}
+/* LOGIN */
 
 #login {
 	height: 30px;
@@ -32,6 +22,28 @@
 	font-size: smaller;
 }
 
+/* PAGE */
+
+#page {
+	width: 900px;
+	margin: 0 auto;
+	background-color: white;
+	border-top: 1px #eeeeee solid;
+	border-left: 20px #eeeeee solid;
+	border-right: 20px #eeeeee solid;
+}
+
+input[readonly="readonly"] {
+	color: rgb(84, 84, 84);
+	background-color: rgb(235, 235, 228);
+}
+
+/* HEADER */
+
+#header {
+	
+}
+
 #titulo {
 	
 }
@@ -43,15 +55,15 @@
 
 #menu {
    font-size: 1.3em;
-   width: 500px;
-   padding: 20px;
+   width: 300px;
+   padding-top: 5px;
+   padding-bottom: 30px;
    margin: 0 auto; 
    position: relative;
 }
 
 #navbar {
    margin: 0 auto;
-   margin-left: 100px;
    padding: 0;
    height: 1em;
    
@@ -86,6 +98,7 @@
    position: absolute;
    margin: 0;
    padding: 0;
+   
 }
 
 #navbar li:hover li, #menu li.hover li {
@@ -106,20 +119,111 @@
 	padding-bottom: 80px;
 }
 
+/* INDEX */
+
 #description {
 	padding-top: 110px;
 }
 
-#description > div {
+#description  div {
 	margin: 0 auto;
-	width: 50%;
+	width: 60%;
 }
 
-#description > div > p {
+#description  div legend {
+	font-size: xx-large;
+	font-weight: bold;
+}
+
+#description div p {
+	text-align: center;
+	font-size: x-large;
+}
+
+
+/* LISTA */
+
+#contenedor-tabla {
+	padding-top: 120px;
+	margin: 0 auto;
+	width: 600px;
+}
+
+#filtro {
+	float: right;
+}
+
+#tabla {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	background: #fff;
+	margin: 45px;
+	width: 480px;
+	border-collapse: collapse;
 	text-align: center;
 }
 
+#tabla th {
+	font-size: 14px;
+	font-weight: normal;
+	color: #039;
+	padding: 10px 8px;
+	border-bottom: 2px solid #6678b1;
+}
+
+#tabla td {
+	border-bottom: 1px solid #ccc;
+	color: #669;
+	padding: 6px 8px;
+}
+
+/* INSERTAR, ELIMINAR, ACTUALIZAR */
+
+#form {
+	
+	padding-top: 130px;
+	width: 500px;
+	margin: 0 auto;
+}
+
+#form td {
+	font-size: larger;
+	min-width: 100px;
+}
+
+#form td:last-child {
+	text-align: right;
+}
+
+#form input[type="button"] {
+	font-size: larger;
+}
+
+/* ERROR */
+#error {
+	padding-top: 120px;
+	margin: 0 auto;
+	width: 600px;
+}
+
+#error span {
+	font-size: large;
+	font-weight: bold;
+	color: red;
+}
+
+#error span {
+	font-size: large;
+	font-weight: bold;
+}
+
+#error div {
+	text-align: center;
+	padding: 20px;
+}
+
 /* FOOTER */
+
 
 #footer {
 	height: 40px;

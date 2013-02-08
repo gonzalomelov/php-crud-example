@@ -26,11 +26,11 @@ function validarUsuario($usuario, $password){
 }
 
 //Titulos
-function insertarTitulo($titulo, $idioma, $subtitulos, $genero_id){
+function insertarTitulo($titulo, $idioma, $subtitulos, $zona, $genero_id){
 	definirDB();
 	
-	$query = "insert into titulos (titulo, idioma, subtitulos, genero_id)".
-			" values ('$titulo', '$idioma', '$subtitulos', $genero_id)";
+	$query = "insert into titulos (titulo, idioma, subtitulos, zona, genero_id)".
+			" values ('$titulo', '$idioma', '$subtitulos', '$zona', $genero_id)";
 	$result = mysql_query($query);
 
 	return $result;
@@ -52,7 +52,7 @@ function obtenerTitulo($idTitulo){
 function listarTitulos(){
 	definirDB();
 	
-	$query = "select t.id, titulo, idioma, subtitulos, genero_id, genero ".
+	$query = "select t.id, titulo, idioma, subtitulos, zona, genero_id, genero ".
 		"from titulos t join generos g on t.genero_id = g.id;";
 	$result = mysql_query($query);
 	
@@ -60,6 +60,48 @@ function listarTitulos(){
 		return false;
 	}
 	
+	return $result;
+}
+
+function listarTitulosOrdenados($columna){
+	definirDB();
+
+	$query = "select t.id, titulo, idioma, subtitulos, zona, genero_id, genero ".
+			"from titulos t join generos g on t.genero_id = g.id order by $columna asc;";
+	$result = mysql_query($query);
+
+	if (!$result){
+		return false;
+	}
+
+	return $result;
+}
+
+function listarTitulosOrdenadosPorGenero($columna, $genero){
+	definirDB();
+
+	$query = "select t.id, titulo, idioma, subtitulos, zona, genero_id, genero ".
+			"from titulos t join generos g on t.genero_id = g.id where genero = '$genero' order by $columna asc;";
+	$result = mysql_query($query);
+
+	if (!$result){
+		return false;
+	}
+
+	return $result;
+}
+
+function listarTitulosPorGenero($genero){
+	definirDB();
+
+	$query = "select t.id, titulo, idioma, subtitulos, zona, genero_id, genero ".
+			"from titulos t join generos g on t.genero_id = g.id where genero = '$genero';";
+	$result = mysql_query($query);
+
+	if (!$result){
+		return false;
+	}
+
 	return $result;
 }
 
@@ -72,10 +114,10 @@ function eliminarTitulo($id){
 	return $result;
 }
 
-function actualizarTitulo($id, $titulo, $idioma, $subtitulos, $genero_id){
+function actualizarTitulo($id, $titulo, $idioma, $subtitulos, $zona, $genero_id){
 	definirDB();
 	
-	$query = "update titulos set titulo='$titulo', idioma='$idioma', subtitulos='$subtitulos', genero_id=$genero_id where id=$id;";
+	$query = "update titulos set titulo='$titulo', idioma='$idioma', subtitulos='$subtitulos', zona='$zona', genero_id=$genero_id where id=$id;";
 	$result = mysql_query($query);
 
 	return $result;
@@ -122,7 +164,7 @@ function obtenerGenero($id){
 function listarGeneros(){
 	definirDB();
 	
-	$query = "select * from generos;";
+	$query = "select * from generos order by genero asc;";
 	$result = mysql_query($query);
 	
 	if (!$result){

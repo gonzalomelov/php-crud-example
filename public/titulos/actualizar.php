@@ -17,11 +17,12 @@
 		$titulo = $_POST["titulo"];
 		$idioma = $_POST["idioma"];
 		$subtitulos = $_POST["subtitulos"];
+		$zona = $_POST["zona"];
 		$genero = $_POST["genero"];
 	
 		$genero_id = obtenerIdGenero($genero);
 		
-		if (actualizarTitulo($id, $titulo, $idioma, $subtitulos, $genero_id)) {
+		if (actualizarTitulo($id, $titulo, $idioma, $subtitulos, $zona, $genero_id)) {
 			header("Location: ".URLADDR."/titulos/listar.php");
 		} else {
 			header("Location: ".URLADDR."/error.php");
@@ -45,98 +46,143 @@
 <!doctype>
 <html>
 	<head>
-		<title>e.Disks</title>
+		<title>e.Disks - Actualizar Titulo</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo URLADDR; ?>/style.css" />
+		<script type="text/javascript" src="<?php echo URLADDR; ?>/validaciones.js"></script>
 	</head>
 	<body>
-		<div id="page">
-			<div id="header">
-				<?php
-					require_once ABSPATH.'/header.php';
-				?>
-			</div>
-			<div id="content">
-				<form action="<?php echo URLADDR; ?>/titulos/actualizar.php" method="post">
-					<div>
-						<div>
-							Id: 
-							<?php 
-							if (!$modificarTitulo) {
-								echo '<input name="id" type="text" />';
-							} else {
-								echo '<input name="id" type="text" value="'.$titulo['id'].'" readonly="readonly" />';
-							}
-							?>	
-						</div>
-						<div>
-							Titulo:
-							<?php 
-							if (!$modificarTitulo) {
-								echo '<input name="titulo" type="text" value="Deshabilitado" disabled="disabled" />';
-							} else {
-								echo '<input name="titulo" type="text" value="'.$titulo['titulo'].'"/>';
-							}
-							?>
-						</div>
-						<div>
-							Idioma:
-							<?php 
-							if (!$modificarTitulo) {
-								echo '<input name="idioma" type="text" value="Deshabilitado" disabled="disabled" />';
-							} else {
-								echo '<input name="idioma" type="text" value="'.$titulo['idioma'].'"/>';
-							}
-							?>
-						</div>
-						<div>
-							Subtitulos:
-							<?php 
-							if (!$modificarTitulo) {
-								echo '<input name="subtitulos" type="text" value="Deshabilitado" disabled="disabled" />';
-							} else {
-								echo '<input name="subtitulos" type="text" value="'.$titulo['subtitulos'].'"/>';
-							}
-							?>
-						</div>
-						<div>
-							Genero:
-							<?php
-							if (!$modificarTitulo) {
-								echo '<select name="genero" disabled="disabled">';
-								echo '<option>Deshabilitado</option>';
-								echo '</select>';
-								 
-							} else {
-								echo '<select name="genero">';
-								$genero_id = $titulo['genero_id'];
-								$generos = listarGeneros();
-								while($genero = mysql_fetch_assoc($generos)){
-									$selected = "";
-									if ($genero_id == $genero['id']){
-										$selected = "selected";
-									}
-									echo "<option $selected >".$genero['genero']."</option>";
-								}
-								echo '</select>';
-							}
-							?>
-						</div>
-						<div>
-							<?php 
-							if (!$modificarTitulo){
-								$submit = "Seleccionar Titulo";
-							} else {
-								$submit = "Actualizar Titulo";
-							}
-							echo '<input type="submit" value="'.$submit.'" />'; 
-							?>
-						</div>
+		<div id="wraper">
+			<?php
+				require_once ABSPATH.'/login.inc.php';
+			?>
+			<div id="page">
+				<div id="header">
+					<?php
+						require_once ABSPATH.'/header.inc.php';
+					?>
+				</div>
+				<div id="content">
+					<div id="form">
+						<fieldset>
+							<legend>Actualizar Titulo</legend>
+							<form id="tituloActualizar" action="<?php echo URLADDR; ?>/titulos/actualizar.php" method="post">
+								<table>
+									<tr>
+										<td>Id:</td>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarTitulo) {
+											echo '<input id="id" name="id" type="text" />';
+										} else {
+											echo '<input id="id" name="id" type="text" value="'.$titulo['id'].'" readonly="readonly" />';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td>Titulo:</td>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarTitulo) {
+											echo '<input id="titulo" name="titulo" type="text" value="Deshabilitado" disabled="disabled" />';
+										} else {
+											echo '<input id="titulo" name="titulo" type="text" value="'.$titulo['titulo'].'"/>';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td>Idioma:</td>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarTitulo) {
+											echo '<input id="idioma" name="idioma" type="text" value="Deshabilitado" disabled="disabled" />';
+										} else {
+											echo '<input id="idioma" name="idioma" type="text" value="'.$titulo['idioma'].'"/>';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td>Subtitulos:</td>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarTitulo) {
+											echo '<input id="subtitulos" name="subtitulos" type="text" value="Deshabilitado" disabled="disabled" />';
+										} else {
+											echo '<input id="subtitulos" name="subtitulos" type="text" value="'.$titulo['subtitulos'].'"/>';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td>Zona:</td>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarTitulo) {
+											echo '<input id="zona" name="zona" type="text" value="Deshabilitado" disabled="disabled" />';
+										} else {
+											echo '<input id="zona" name="zona" type="text" value="'.$titulo['zona'].'"/>';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td>Genero:</td>
+										<td></td>
+										<td>
+										<?php
+										if (!$modificarTitulo) {
+											echo '<select id="genero" name="genero" disabled="disabled">';
+											echo '<option>Deshabilitado</option>';
+											echo '</select>';
+											 
+										} else {
+											echo '<select id="genero" name="genero">';
+											$genero_id = $titulo['genero_id'];
+											$generos = listarGeneros();
+											while($genero = mysql_fetch_assoc($generos)){
+												$selected = "";
+												if ($genero_id == $genero['id']){
+													$selected = "selected";
+												}
+												echo "<option $selected >".$genero['genero']."</option>";
+											}
+											echo '</select>';
+										}
+										?>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+										<?php 
+										if (!$modificarTitulo){
+											$submit = "Seleccionar Titulo";
+											echo '<input type="button" value="'.$submit.'" onclick="validarFormTituloActualizarSeleccionar()" />';
+										} else {
+											$submit = "Actualizar Titulo";
+											echo '<input type="button" value="'.$submit.'" onclick="validarFormTituloActualizarSubmit()" />';
+										}
+										 
+										?>
+										</td>
+										<td></td>
+									</tr>
+								</table>
+							</form>
+						</fieldset>
 					</div>
-				</form>
+				</div>
 			</div>
 			<div id="footer">
 				<?php
-					require_once ABSPATH.'/footer.php';
+					require_once ABSPATH.'/footer.inc.php';
 				?>
 			</div>
 		</div>
